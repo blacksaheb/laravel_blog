@@ -1,0 +1,11 @@
+# pack-refs with: peeled fully-peeled sorted 
+6d99624337881229304d2202e5088455f2e7edf9 refs/remotes/origin/dependabot/composer/laravel/framework-7.30.4
+4ad02e68a2b3f1075de9e020812f7ee35142563e refs/remotes/origin/dependabot/composer/symfony/http-kernel-5.1.5
+526d18239ef52850a89784deff55ed887750bbad refs/remotes/origin/dependabot/npm_and_yarn/axios-0.21.1
+f43c45093d5244b8d06a931bfc5add55d0c29d57 refs/remotes/origin/dependabot/npm_and_yarn/elliptic-6.5.4
+ef8528fc51d4235358c4cb37cfd7a7044eeeaac5 refs/remotes/origin/dependabot/npm_and_yarn/http-proxy-1.18.1
+1506bda1ec7526dfb1767e42e6b755de44afb392 refs/remotes/origin/dependabot/npm_and_yarn/ini-1.3.8
+dfe376278c28fe6b0439d980ad703685720f9a39 refs/remotes/origin/dependabot/npm_and_yarn/jquery-3.5.0
+391f774b69f104c94709b6bb6d319b72053e7856 refs/remotes/origin/dependabot/npm_and_yarn/lodash-4.17.19
+09f7cbc341051ff4526393c29a16a84f12494788 refs/remotes/origin/dependabot/npm_and_yarn/websocket-extensions-0.1.4
+05d406e19cb234c4a0a5ee63d1eeaeaaa247ba1c refs/remotes/origin/master
