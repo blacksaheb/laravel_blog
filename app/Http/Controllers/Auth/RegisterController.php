@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Redis;
 
 class RegisterController extends Controller
 {
@@ -64,6 +65,17 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $all_users=User::get(['email'])->all();
+        $all_users[]['email']=$data['email'];
+
+        
+        $all_users=json_encode($all_users);
+        $redis = Redis::connection();
+        $redis->del('users');
+        $redis->set('users',$all_users);
+        
+        //dd($redis->get('users'));
+       
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],

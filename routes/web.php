@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/',function(){
+//   // echo phpinfo();exit;
+//   $redis=app()->make('redis');
+//   $redis->set("key1","testVale");
+//   return $redis->get("key1");
+// });
+
 Route::get('/', 'PostController@index');
 Route::get('/home', ['as' => 'home', 'uses' => 'PostController@index']);
 
@@ -32,6 +39,8 @@ Route::middleware(['auth'])->group(function () {
   Route::post('new-post', 'PostController@store');
   // edit post form
   Route::get('edit/{slug}', 'PostController@edit');
+  // approve post form
+  Route::get('approve/{id}', 'PostController@approve');
   // update post
   Route::post('update', 'PostController@update');
   // delete post
@@ -44,11 +53,17 @@ Route::middleware(['auth'])->group(function () {
   Route::post('comment/add', 'CommentController@store');
   // delete comment
   Route::post('comment/delete/{id}', 'CommentController@distroy');
+
+  //Dispaly all post
+  Route::get('all-posts', 'PostController@allpost');
 });
 
 //users profile
 Route::get('user/{id}', 'UserController@profile')->where('id', '[0-9]+');
 // display list of posts
 Route::get('user/{id}/posts', 'UserController@user_posts')->where('id', '[0-9]+');
-// display single post
+
+
+
+//Display single post
 Route::get('/{slug}', ['as' => 'post', 'uses' => 'PostController@show'])->where('slug', '[A-Za-z0-9-_]+');

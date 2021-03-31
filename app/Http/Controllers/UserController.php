@@ -34,7 +34,7 @@ class UserController extends Controller
   public function user_posts($id)
   {
     //
-    $posts = Posts::where('author_id', $id)->where('active', '1')->orderBy('created_at', 'desc')->paginate(5);
+    $posts = Posts::where('author_id', $id)->orderBy('created_at', 'desc')->paginate(5);
     $title = User::find($id)->name;
     return view('home')->withPosts($posts)->withTitle($title);
   }

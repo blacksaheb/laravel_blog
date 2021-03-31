@@ -22,8 +22,15 @@ class PostController extends Controller
    */
   public function index()
   {
-    $posts = Posts::where('active', '1')->orderBy('created_at', 'desc')->paginate(5);
+    $posts = Posts::where('active', '2')->orderBy('created_at', 'desc')->paginate(5);
     $title = 'Latest Posts';
+    return view('home')->withPosts($posts)->withTitle($title);
+  }
+
+  public function allpost()
+  {
+    $posts = Posts::where('active', '1')->orderBy('created_at', 'desc')->paginate(20);
+    $title = 'Posts for Approval';
     return view('home')->withPosts($posts)->withTitle($title);
   }
 
@@ -65,7 +72,7 @@ class PostController extends Controller
       $message = 'Post saved successfully';
     } else {
       $post->active = 1;
-      $message = 'Post published successfully';
+      $message = 'Post sent for approval successfully';
     }
     $post->save();
     return redirect('edit/' . $post->slug)->withMessage($message);
@@ -142,6 +149,20 @@ class PostController extends Controller
         $message = 'Post updated successfully';
         $landing = $post->slug;
       }
+      $post->save();
+      return redirect($landing)->withMessage($message);
+    } else {
+      return redirect('/')->withErrors('you have not sufficient permissions');
+    }
+  }
+
+  public function approve(Request $request,$id)
+  {
+    $post = Posts::find($id);
+    if ($post && $request->user()->is_admin() ) {
+      $post->active = 2;
+      $message = 'Post approved successfully';
+      $landing = 'all-posts';
       $post->save();
       return redirect($landing)->withMessage($message);
     } else {
