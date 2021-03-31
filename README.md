@@ -1,31 +1,22 @@
 # Installation Steps
 ------------
-
-Composer
-
-composer install
-
-Generate Key
-
-php artisan key:generate
-
-Setup Database
-
+## Environment setup
 cp .env.example .env
 
-DB_HOST=localhost
+## Composer
+composer install
+
+## Generate Key
+php artisan key:generate
+
+## Setup Database
+DB_HOST=localhost \n
 DB_DATABASE=students_data
 DB_USERNAME=root
 DB_PASSWORD=
 
-Get Tables
-
+## Get Tables
 php artisan migrate
 
-Get default/initial/dummy table values
-
-php artisan db:seed
-
-Run the project
-
+## Run the project
 php artisan serve
