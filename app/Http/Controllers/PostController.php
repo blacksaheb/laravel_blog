@@ -164,6 +164,16 @@ class PostController extends Controller
       $message = 'Post approved successfully';
       $landing = 'all-posts';
       $post->save();
+
+      $details = [
+        'subject' => 'New Post Available'
+      ];
+        
+      // send all mail in the queue.
+        $job = (new \App\Jobs\SendEmails($details))
+        ->delay(now()->addSeconds(2)); 
+        dispatch($job);
+      
       return redirect($landing)->withMessage($message);
     } else {
       return redirect('/')->withErrors('you have not sufficient permissions');
